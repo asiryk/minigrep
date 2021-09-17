@@ -44,13 +44,13 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 }
 
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-  let line_match = |line| line.contains(query);
+  let line_match = |line: &&str| line.contains(query);
   contents.lines().filter(line_match).collect()
 }
 
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
   let query = query.to_lowercase();
-  let line_match = |line| line.to_lowercase().contains(&query);
+  let line_match = |line: &&str| line.to_lowercase().contains(&query);
   contents.lines().filter(line_match).collect()
 }
 
